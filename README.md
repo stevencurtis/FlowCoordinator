@@ -1,14 +1,14 @@
-# Flow Coordinators using Swift
+# Flow Coordinators Implemented in Swift
 ## Handle Dependencies well!
 
-[Image by Mesh](Images/photo-1514377863868-02d7217c8bcd.jpeg)
+![Image by Mesh](Images/photo-1514377863868-02d7217c8bcd.jpeg)
 
 # Before we start
 Difficulty: Beginner | Easy | Normal | **Challenging**<br/>
 This article has been developed using Xcode 12.2, and Swift 5.3
 
 Requires iOS13 and above for the implementation used to lock the view.
-The [Repo is avaliable for download](https://github.com/stevencurtis/SwiftCoding/tree/master/FlowCoordinator/) 
+The [Repo is avaliable for download](https://github.com/stevencurtis/SwiftCoding/tree/master/FlowCoordinator/).
 
 ## Prerequisites:
 * You will be expected to be aware how to make a [Single View Application](https://medium.com/swlh/your-first-ios-application-using-xcode-9983cf6efb71) in Swift.
@@ -16,10 +16,9 @@ The [Repo is avaliable for download](https://github.com/stevencurtis/SwiftCoding
 * This article uses [Behaviour View Controllers](https://medium.com/@stevenpcurtis/encode-behaviors-into-reusable-view-controllers-8f6f50e8e82e)
 * This article uses my Network Library implementation
 
-## Keywords and Terminology
+## Keywords and Terminology:
 Architecture: The base structure of a software development project
 UIViewController: A view controller is an intermediary between the views it manages and the data of your app
-
 
 # This project
 ## The motivation
@@ -50,7 +49,7 @@ Encode Behaviors into Reusable View Controllers
 Data Binding using my [Two Way Binding Library](https://stevenpcurtis.medium.com/implement-two-way-uikit-binding-in-vanilla-swift-5261d15c918) avoiding the use of third-party libraries
 [Key Chain](https://medium.com/@stevenpcurtis.sc/secure-user-data-with-keychain-in-swift-337684d6488c)
 URLs are build using my [URL Builder](https://medium.com/swlh/building-urls-in-swift-51f21240c537)
-The views here are [programatically created](https://medium.com/@stevenpcurtis.sc/write-clean-code-by-overriding-loadview-ac4f172163d0)
+The views here are [programatically created](https://medium.com/@stevenpcurtis.sc/write-clean-code-by-overriding-loadview-ac4f172163d0).
 
 ## Using the project
 If you want to download the project from the [Repo](https://github.com/stevencurtis/SwiftCoding/tree/master/FlowCoordinator/) to get all of the code, you are welcome to. However since the login server is provided by `https://reqres.in/api/login` to log in you  need to use a *username* of eve.holt@reqres.in, and a *password* of cityslicka.
@@ -71,7 +70,7 @@ var errorBindable: MakeBindable<Error> = MakeBindable()
 
 which is observed from the relevant `UIViewController` instance to a property, and the `UIAlertView` is opened from there.
 ```swift
- viewModel.errorBindable.bind(\Error.self, to: self, \.myError)
+viewModel.errorBindable.bind(\Error.self, to: self, \.myError)
  
 var myError: Error? {
     didSet {
@@ -79,7 +78,7 @@ var myError: Error? {
     }
 }
 ```
-This calls an extension that allows for a completion handler to communicate back to the `UIViewController` instance that the user has finished with the `UIAlertController`
+This calls an extension that allows for a completion handler to communicate back to the `UIViewController` instance that the user has finished with the `UIAlertController`.
 
 ```swift
 extension UIViewController {
@@ -100,10 +99,10 @@ extension UIViewController {
 In terms of dependency injection, a good use of initializers in the view model instances mean that the network manager and keychain manager can be used, and swapped out for mocks during testing (providing the mocks conform to `NetworkManagerProtocol` and `UserDataManagerProtocol` respectively. 
 
 ```swift
-    init<T: NetworkManagerProtocol>(networkManager: T, keychain: UserDataManagerProtocol = UserDataManager() ) {
-        self.anyNetworkManager = AnyNetworkManager(manager: networkManager)
-        self.keychain = keychain
-    }
+init<T: NetworkManagerProtocol>(networkManager: T, keychain: UserDataManagerProtocol = UserDataManager() ) {
+    self.anyNetworkManager = AnyNetworkManager(manager: networkManager)
+    self.keychain = keychain
+}
 ```
 
 Then within tests a Mock can be used and injected using something like the following:
@@ -248,10 +247,9 @@ class LoginViewController: UIViewController {
 }
 ```
 
-Whereas the `LoginViewModel` makes the network request
+Whereas the `LoginViewModel` makes the network request, and is bound to the `UIViewController` instance:
 
 ```swift
-
 import Foundation
 import NetworkLibrary
 import TwoWayBindingUIKit
@@ -307,8 +305,10 @@ The project coordinator is described through the following project:
  ![Container](Images/Container.png)
 
 # Conclusion
-Flow Coordinators are a great way to prevent the classing "massive view controller" that we have all read about, while making sure that we have full functionality to allow the user to explore the App as well as we can. 
+Flow Coordinators are a great way to prevent the classing "massive view controller" that we have all read about, while making sure that we have full functionality to aid understanding. 
 
 Remember you can download the [Repo](https://github.com/stevencurtis/SwiftCoding/tree/master/FlowCoordinator/) to get all of the code and, hopefully find this project useful for whatever you are doing in your coding journey.
+
+Whatever you do with this project, and your time coding remember to do please enjoy it!
 
 If you've any questions, comments or suggestions please hit me up on [Twitter](https://twitter.com/stevenpcurtis) 

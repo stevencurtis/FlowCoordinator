@@ -32,7 +32,7 @@ class LoginViewModel {
         viewEnabledBindable.update(with: false)
         guard let userName = userNameBindable.currentValue(),
               let password = passwordBindable.currentValue()
-        else { self.viewEnabledBindable.update(with: true); return }
+        else {self.viewEnabledBindable.update(with: true); return}
         let data: [String : Any] = ["email": userName, "password": password]
         anyNetworkManager.fetch(url: API.login.url, method: .post(body: data), completionBlock: {[weak self] res in
             switch res {
