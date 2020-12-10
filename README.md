@@ -303,6 +303,10 @@ class LoginViewModel {
 The project coordinator is described through the following project:
 
  ![Container](Images/Container.png)
+ 
+ If you look through the  [Repo](https://github.com/stevencurtis/SwiftCoding/tree/master/FlowCoordinator/) I really think you’ll see how this functions, and perhaps how this can work in your own working context.
+ 
+ Good luck!
 
 # Conclusion
 Flow Coordinators are a great way to prevent the classing "massive view controller" that we have all read about, while making sure that we have full functionality to aid understanding. 
